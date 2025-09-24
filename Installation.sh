@@ -7,11 +7,13 @@ if [ $USER -ne 0 ]; then
     exit 1
 fi
 
-dnf install mysql -y
+VALIDATE(){
+    if [ $1 -ne 0 ]; then
+        echo " ERROR: Installing $2 is failure"
+    else
+        echo "$2 app is  installed successfully"
+    fi
+}
 
-if [ $? -ne 0 ]; then
-    echo "ERROR: Installing mysql is failure"
-    exit 1
-else 
-    echo "MYSQL app is already installed"
-fi
+dnf install mysql -y
+VALIDATE $? "MYSQL"
