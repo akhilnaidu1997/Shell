@@ -17,3 +17,9 @@ VALIDATE(){
 
 dnf install mysql -y
 VALIDATE $? "MYSQL"
+
+dnf install nginx -y
+VALIDATE $? "NGINX"
+
+dnf install mongodb-mongosh
+VALIDATE $? "MONGOSH"
