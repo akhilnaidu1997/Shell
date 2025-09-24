@@ -12,6 +12,8 @@ LOG_FILE="$LOG_FOLDER1/$SCRIPT_NAME1.log"
 
 mkdir -p $LOG_FOLDER1
 
+echo " Script started at time : $date "
+
 if [ $USER -ne 0 ]; then
     echo -e "$R ERROR:: Install with sudo permissions $N"
     exit 1
@@ -46,6 +48,6 @@ if [ $? -ne 0 ]; then
     dnf install python3 -y &>> $LOG_FILE
     VALIDATE $? "PYTHON"
 else
-    echo -e "$Y PYTHON# is already installed $N"
+    echo -e "$Y PYTHON is already installed $N"
 fi
 
