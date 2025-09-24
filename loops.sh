@@ -22,6 +22,7 @@ fi
 VALIDATE(){
     if [ $1 -ne 0 ]; then
         echo -e " $R ERROR: Installing $2 is failure $N" | tee -a $LOG_FILE
+        exit 1
     else
         echo -e "$G $2 app is  installed successfully $N" | tee -a $LOG_FILE
     fi
@@ -29,12 +30,12 @@ VALIDATE(){
 
 for PACKAGE in $@
 do
-    dnf list installed mysql &>> $LOG_FILE
+    dnf list installed $PACKAGE &>> $LOG_FILE
     if [ $? -ne 0 ]; then
-        dnf install mysql -y &>> $LOG_FILE
-        VALIDATE $? "MYSQL"
+        dnf install $PACKAGE -y &>> $LOG_FILE
+        VALIDATE $? "$PACKAGE"
     else
-        echo -e "$Y MYSQL is already installed $N" | tee -a $LOG_FILE
+        echo -e "$Y $PACKAGE is already installed $N" | tee -a $LOG_FILE
     fi
 done
 
