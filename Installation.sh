@@ -1,17 +1,22 @@
 #!/bin/bash # #! --> represents shebang, used to tell which shell we are using as interpreter
 
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[0m"
+
 USER=$(id -u) 
 
 if [ $USER -ne 0 ]; then
-    echo "ERROR:: Install with sudo permissions"
+    echo "$R ERROR:: Install with sudo permissions $N"
     exit 1
 fi
 
 VALIDATE(){
     if [ $1 -ne 0 ]; then
-        echo " ERROR: Installing $2 is failure"
+        echo " $R ERROR: Installing $2 is failure $N"
     else
-        echo "$2 app is  installed successfully"
+        echo "$G $2 app is  installed successfully $N"
     fi
 }
 
