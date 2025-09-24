@@ -9,7 +9,7 @@ fi
 dnf install mysql -y
 
 if [ $? -ne 0 ]; then
-    dnf install mysql -y
+    echo "ERROR: Installing mysql is failure"
 else 
     echo "MYSQL app is already installed"
 fi
