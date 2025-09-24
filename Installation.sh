@@ -12,7 +12,7 @@ LOG_FILE="$LOG_FOLDER1/$SCRIPT_NAME1.log"
 
 mkdir -p $LOG_FOLDER1
 
-echo " Script started at time : $date "
+echo " Script started at time : $(date) "
 
 if [ $USER -ne 0 ]; then
     echo -e "$R ERROR:: Install with sudo permissions $N"
