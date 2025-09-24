@@ -31,7 +31,7 @@ for PACKAGE in $@
 do
     dnf list installed mysql &>> $LOG_FILE
     if [ $? -ne 0 ]; then
-        dnf install mysqll -y &>> $LOG_FILE
+        dnf install mysql -y &>> $LOG_FILE
         VALIDATE $? "MYSQL"
     else
         echo -e "$Y MYSQL is already installed $N" | tee -a $LOG_FILE
