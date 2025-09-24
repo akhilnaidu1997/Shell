@@ -8,15 +8,15 @@ N="\e[0m"
 USER=$(id -u) 
 
 if [ $USER -ne 0 ]; then
-    echo "$R ERROR:: Install with sudo permissions $N"
+    echo -e "$R ERROR:: Install with sudo permissions $N"
     exit 1
 fi
 
 VALIDATE(){
     if [ $1 -ne 0 ]; then
-        echo " $R ERROR: Installing $2 is failure $N"
+        echo -e " $R ERROR: Installing $2 is failure $N"
     else
-        echo "$G $2 app is  installed successfully $N"
+        echo -e "$G $2 app is  installed successfully $N"
     fi
 }
 
