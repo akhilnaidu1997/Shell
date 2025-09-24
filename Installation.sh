@@ -15,8 +15,11 @@ VALIDATE(){
     fi
 }
 
-dnf install mysql -y
-VALIDATE $? "MYSQL"
+dnf list installed mysql
+if [ $? -ne 0 ]; then
+    dnf install mysql -y
+    VALIDATE $? "MYSQL"
+fi
 
 dnf install nginx -y
 VALIDATE $? "NGINX"
