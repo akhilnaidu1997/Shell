@@ -21,8 +21,15 @@ if [ $? -ne 0 ]; then
     VALIDATE $? "MYSQL"
 fi
 
-dnf install nginx -y
-VALIDATE $? "NGINX"
+dnf list installed nginx
+if [ $? -ne 0 ]; then
+    dnf install nginx -y
+    VALIDATE $? "NGINX"
+fi
 
-dnf install python3 -y
-VALIDATE $? "PYTHON"
+dnf list installed python3
+if [ $? -ne 0 ]; then
+    dnf install python3 -y
+    VALIDATE $? "PYTHON"
+fi
+
