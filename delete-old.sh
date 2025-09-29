@@ -26,4 +26,6 @@ FIND_DELETE=$(find $SOURCE -name "*.log" -type f -mtime +14)
 while IFS= read -r line
 do
     echo "Deleting the files: $line"
+    rm -rf $line
+    echo "Deleted line $line"
 done < colors.sh
