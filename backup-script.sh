@@ -5,6 +5,10 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
+SOURCE_DIR=$1
+DEST_DIR=$2
+DAYS=${3:-14}
+
 USER=$(id -u) 
 LOG_FOLDER1="/var/log/shell-install"
 SCRIPT_NAME1=$( echo $0 | cut -d "." -f1 )
@@ -26,4 +30,14 @@ USAGE(){
 
 if [ $# -ne 2 ]; then
     USAGE
+fi
+
+if [ ! -d $SOURCE_DIR ]; then
+    echo " ERROR: Source $SOURCE_DIR is not there"
+    exit 1
+fi
+
+if [ ! -d $DEST_DIR ]; then
+    echo " ERROR: Source $DEST_DIR is not there"
+    exit 1
 fi
