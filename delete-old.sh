@@ -14,18 +14,16 @@ mkdir -p $LOG_FOLDER1
 
 echo " Script started at time : $(date) " | tee -a $LOG_FILE
 
-SOURCE="/home/ec2-user/app-logs"
+source="/home/ec2-user/app-logs"
 
-if [ ! -d $SOURCE ]; then
-    echo "ERROR: $SOURCE is not available"
+if [ ! -d $source ]; then
+    echo "ERROR: Source directory is not available"
     exit 1
 fi
 
-FIND_DELETE=$(find $SOURCE -name "*.log" -type f -mtime +14)
+find=$( find $source -name "*.log" -type f -mtime +14)
 
-while IFS= read -r line
+while IFS= read -r line # Internal field seperator
 do
-    echo "Deleting the files: $line"
-    rm -rf $line
-    echo "Deleted line $line"
-done <<< $FIND_DELETE
+    echo "Deleting lines: $line"
+done <evenodd.sh
