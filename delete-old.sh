@@ -26,4 +26,5 @@ find=$( find $source -name "*.log" -type f -mtime +14)
 while IFS= read -r line # Internal field seperator
 do
     echo "Deleting lines: $line"
+    rm -rf $line
 done <evenodd.sh
