@@ -27,4 +27,4 @@ while IFS= read -r line # Internal field seperator
 do
     echo "Deleting lines: $line"
     rm -rf $line
-done <evenodd.sh
+done <<< $find
