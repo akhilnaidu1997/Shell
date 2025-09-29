@@ -20,7 +20,7 @@ if [ $USER -ne 0 ]; then
 fi
 
 USAGE(){
-    echo "USAGE: sh <file.sh> <source-dir> <dest-dir> <Days>[optional]"
+    echo -e "USAGE: $R sh <file.sh> <source-dir> <dest-dir> <Days>[optional] $N"
     exit 1
 }
 
