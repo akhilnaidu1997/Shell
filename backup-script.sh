@@ -28,7 +28,7 @@ USAGE(){
     exit 1
 }
 
-if [ $# -ne 2 ]; then
+if [ $# -lt 2 ]; then
     USAGE
 fi
 
@@ -46,6 +46,22 @@ FILES=$( find $SOURCE_DIR -name "*.log" -type f -mtime $DAYS)
 
 if [ -z "$FILES" ]; then
     echo "files found"
+    TIMESTAMP=$(date +%F-%H-%M)
+    ZIP_FILE_NAME="$DEST_DIR/app-logs-$TIMESTAMP"
+    echo "Zip file name: $ZIP_FILE_NAME"
+    find $SOURCE_DIR -name "*.log" -type f -mtime $DAYS | zip -@ -j "$ZIP_FILE_NAME"
+    if [ -f $ZIP_FILE_NAME ]; then
+        echo "Archieval is successful"
+        while IFS= read -r line # Internal field seperator
+        do
+            echo "Deleting lines: $line"
+            rm -rf $line
+        done <<< $FILES
+    else
+        echo "Archieval is failed"
+    fi
+
 else
     echo "files not found"
 fi
+
