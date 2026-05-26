@@ -65,3 +65,11 @@ Swap:         2.0Gi   0.0Gi   2.0Gi
 ├── $3     → third field  = used memory   (3.2Gi)
 └── print  → prints "Used: 3.2Gi / Total: 7.7Gi"
 ```
+
+## Check-server
+
+In this script if the servers ip is wrong at this point it keeps waiting and wont proceed with checking the other servers. Hence we have added the connection timeout
+```
+ssh ec2-user@"$server" "df -hT"
+ssh -o ConnectTimeout=5 ec2-user@"$server" "df -hT"
+```
