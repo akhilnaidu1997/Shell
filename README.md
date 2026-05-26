@@ -38,7 +38,7 @@ output looks like:
 
 ## MEMORY USAGE
 
-*** free -h | awk 'NR==2 { print "Total: " $2 "Used: " $3 "Free: " $4 "Usage: " $3/$2*100 "%"}' ***
+***free -h | awk 'NR==2 { print "Total: " $2 "Used: " $3 "Free: " $4 "Usage: " $3/$2*100 "%"}'***
 
 ```
 free -h
