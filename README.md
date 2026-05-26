@@ -1,7 +1,5 @@
 CPU USAGE
-"""
-    top -bn1 | grep "Cpu(s)" | awk '{print "CPU: " $2 "%"}'
-"""
+    ***top -bn1 | grep "Cpu(s)" | awk '{print "CPU: " $2 "%"}'***
 
 """
     top -bn1
