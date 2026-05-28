@@ -73,3 +73,43 @@ In this script if the servers ip is wrong at this point it keeps waiting and won
 ssh ec2-user@"$server" "df -hT"
 ssh -o ConnectTimeout=5 ec2-user@"$server" "df -hT"
 ```
+
+## Logrotate
+
+```
+/etc/logrotate.d/myapp
+
+/var/log/myapp/*.log {
+    daily
+    rotate 7
+    compress
+    missingok
+    notifempty
+    copytruncate
+}
+```
+
+copytruncate:
+Copies current log
+Empties original log file
+
+```
+logrotate -d /etc/logrotate.d/myapp -debug mode
+logrotate -f /etc/logrotate.d/myapp -force rotation
+```
+
+After log rotation and compression, we can upload old .gz log files to Amazon S3 using AWS CLI.
+```
+#!/bin/bash
+
+LOG_PATH="/var/log/myapp"
+S3_BUCKET="s3://my-log-backup-bucket"
+
+find $LOG_PATH -name "*.gz" -mtime +1 -exec aws s3 mv {} $S3_BUCKET \;
+```
+
+we can define cronjob for this
+```
+0 1 * * * /opt/scripts/log_backup.sh
+```
+Runs daily at 1 AM
